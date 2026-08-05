@@ -1,5 +1,5 @@
-// polymorphism adalah menjadikan suatu super class memiliki anak class yang lebih spesifik
-// contoh
+// polymorphism adalah menjadikan suatu super class memiliki anak class yang lebih spesifik (Metode Override)
+// contoh:
 
 // Super Class (Abstraction) -> hal dengan scope umum
 class Vehicle {
