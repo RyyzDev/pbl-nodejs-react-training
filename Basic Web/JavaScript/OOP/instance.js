@@ -46,9 +46,15 @@ console.log(laptop2.cekBaterai());
     LATIHAN
 */
 
-// instance dari class peserta
+// instance pertama dari class peserta
 const peserta1 = new Peserta('Ryyz', 11, 'web');
 console.log(`Halo, Nama saya ${peserta1.nama}, umur saya ${peserta1.umur}, saya ikut program latihan ${peserta1.proglat}`);
+
+//getter dan setter peserta1
+//setter
+peserta1.nilai = 150;
+//getter
+console.log(peserta1.nilai); 
 
 // instance kedua dari class peserta
 const peserta2 = new Peserta('John', 22, 'tik', 80);
