@@ -10,18 +10,23 @@ class Peserta {
 
     grade(){
         switch(true){
+            // jika nilai diatas sama dengan 90
             case (this.nilai >= 90):
                 return 'Sangat Baik';
                 break;
+            // jika nilai diatas sama dengan 80
             case (this.nilai >= 80):
                 return 'Baik';
                 break;
+            // jika nilai diatas sama dengan 70
             case (this.nilai >= 70):
                 return 'Cukup';
                 break;
+            // jika nilai diatas sama dengan 60
             case (this.nilai >= 60):
                 return 'Kurang';
                 break;
+            // jika nilai tidak masuk kondisi apapun
             default:
                 return 'Tidak Lulus';
         }
