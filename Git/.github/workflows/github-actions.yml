@@ -3,9 +3,15 @@ name: CI/CD Workflow
 
 # trigger
 on:
-  # push: akan dieksekusi jika seseorang melakukan push ke branch dengan nama branch dibawah
+  # push: akan dieksekusi jika seseorang melakukan push ke branch dengan nama branch dibawah (otomatis)
   push:
     branches: [ "nama-branch" ]
+  # Hanya berjalan saat PR ditutup (butuh tutup pull request di branch main (manual))
+  pull_request:
+    branches:
+      - main
+    types: [closed] 
+
 # jobs: kumpulan pekerjaan yang akan dieksekusi saat workflow di trigger
 jobs:
   # nama job pertama : (flow pertama) unit testing dan feature testing aplikasi kita
