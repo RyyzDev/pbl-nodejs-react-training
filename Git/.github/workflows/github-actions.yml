@@ -6,11 +6,12 @@ on:
   # push: akan dieksekusi jika seseorang melakukan push ke branch dengan nama branch dibawah (otomatis)
   push:
     branches: [ "nama-branch" ]
+    
   # Hanya berjalan saat PR ditutup (butuh tutup pull request di branch main (manual))
-  pull_request:
-    branches:
-      - main
-    types: [closed] 
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types: [closed] 
 
 # jobs: kumpulan pekerjaan yang akan dieksekusi saat workflow di trigger
 jobs:
@@ -19,8 +20,8 @@ jobs:
     # runs-on : akan di jalankan di runtime ubuntu
     runs-on: ubuntu-latest
     # env: untuk memasukkan env kita ke runtime
-    env:
-        PASSPORT_PASSWORD_CLIENT_ID: ${{ secrets.VARIABEL_ENV_DISINI }}
+    env:                                              
+        PASSPORT_PASSWORD_CLIENT_ID: ${{ secrets.VARIABEL_ENV_DISINI }} # akan diambil dari repository secrets github
     # services : service/program/tool yang akan dijalankan juga ketika job berjalan (dengan aturan pada docker compose)
     services:
       # nama service
@@ -33,8 +34,8 @@ jobs:
         # port service
         ports:
           - 3306:3306
-        # command
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        # command     # perintah health dari service               # berapa lama        # jika gagal terus nyerah di detik berapa      # jika gagal dan nyerah dicoba lagi sebanyak 
+        options: --health-cmd="disini command health service"    --health-interval=10s           --health-timeout=5s                                   --health-retries=3
     # steps : aturan atau langkah langkah untuk menjalankan job
     # berikut contoh ketika laravel, harus menginstall ekstensi dan/atau dependensi yang dibutuhkan oleh aplikasi kita 
     steps:
