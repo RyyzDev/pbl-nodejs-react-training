@@ -1,7 +1,11 @@
 
 
 function panggilPasien(nomor) {
-    return `Pasien nomor ${nomor}, silahkan masuk`
+    if (nomor <= 10){
+        return `Pasien nomor ${nomor}, silahkan masuk`
+    }else {
+        return `Belum masuk antrian nomor ${nomor}`
+    }
 }
 
 
@@ -25,10 +29,22 @@ prosesAntrian();
     Contoh 2
 */
 async function jalankanAntrian() {
-    console.log(await panggilPasien(1))
-    console.log(await panggilPasien(2))
-    console.log(await panggilPasien(3))
-    console.log('semua pasien sudah dipanggil')
+    for (let i = 1; i<= 11; i++){
+        console.log(await panggilPasien(i))
+    }
+
+    // console.log(await panggilPasien(1))
+    // console.log(await panggilPasien(2))
+    // console.log(await panggilPasien(3))
+    // console.log(await panggilPasien(4))
+    // console.log(await panggilPasien(5))
+    // console.log(await panggilPasien(6))
+    // console.log(await panggilPasien(7))
+    // console.log(await panggilPasien(8))
+    // console.log(await panggilPasien(9))
+    // console.log(await panggilPasien(10))
+    // console.log(await panggilPasien(11))
+    // console.log('semua pasien sudah dipanggil')
 }
 
 jalankanAntrian();
