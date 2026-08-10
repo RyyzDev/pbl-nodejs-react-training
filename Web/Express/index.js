@@ -45,10 +45,13 @@ const port = 3000;
 */
 // import router movies
 const moviesRouter = require('./src/routes/movies')
-// middleware parsing json
+// middleware parsing json (hanya dipanggil sekali)
 app.use(express.json())
 // mounting router tentukan root path dan package (nanti semua route di moviesRouter akan bisa diakses)
 app.use('/api/movies', moviesRouter);
+
+const productsRouter = require('./src/routes/products')
+app.use('/api/products', productsRouter)
 
 
 
