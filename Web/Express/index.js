@@ -44,10 +44,10 @@ const port = 3000;
   ROUTING MODULAR
 */
 // import router movies
-const moviesRouter = require('./src/routes/movies.js')
-// mounting router
+const moviesRouter = require('./src/routes/movies')
+// middleware parsing json
 app.use(express.json())
-//pilih path dan import package
+// mounting router tentukan root path dan package (nanti semua route di moviesRouter akan bisa diakses)
 app.use('/api/movies', moviesRouter);
 
 

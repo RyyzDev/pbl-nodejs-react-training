@@ -22,7 +22,66 @@ const movies = [
   { id: 15, title: 'Whiplash', year: 2014 }
 ];
 
-
-router.get('/movies', (req, res) => {
+// GET /api/movies/ (Read All)
+router.get('/', (req, res) => {
     res.json(movies);
 })
+
+// GET /api/movies/:id (Read by id)
+router.get('/:id', (req, res) => {
+    const movie = movies.find(m => m.id === parseInt(req.params.id));
+    if(!movie){
+        res.status(404).json({
+            message: 'movie not found!'
+        })
+    }else{
+        res.json(movie)
+    }
+})
+
+// POST /api/movies (Create data)
+router.post('/', (req, res) => {
+    const newMovie = {
+        id: movies.length + 1,
+        title: req.body.title,
+        year: req.body.year
+    }
+
+    movies.push(newMovie);
+    res.status(201).json({
+        message: 'success create new movies',
+        data: newMovie
+    })
+})
+
+// PUT /api/movies/:id (Update data)
+router.put('/:id', (req, res) => {
+    const movie = movies.find(m => m.id === parseInt(req.params.id));
+    if (!movie) {
+        return res.status(404).json({ message: 'Data not found' });
+    }
+
+    movie.title = req.body.title || movie.title;
+    movie.year = req.body.year || movie.year;
+
+    res.status(200).json({
+        message: 'Movie updated successfully',
+        data: movie
+    });
+});
+
+// DELETE /api/movies/:id (Delete data)
+router.delete('/:id', (req, res) => {
+    const movie = movies.filter(m => m.id === parseInt(req.params.id));
+    if(!movie){
+        res.status(404).json({
+            message: 'data Not found'
+        })
+    }
+    res.status(200).json({
+        message: 'Success Deleted data'
+    })
+})
+
+
+module.exports = router
