@@ -55,8 +55,8 @@ app.get('/data-orang', (req, res) => {
 
 
 /*
-  SOAL 3 - lingkaran tabung
-  cth: /data-orang?umur=21&gender=L
+  SOAL 3 - data orang
+  cth: /data-orang/1
 */
 app.get('/data-orang/:id', (req, res) => {
     let dataOrang =[
