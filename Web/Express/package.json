@@ -1,14 +1,22 @@
 {
-  "name": "express",
+  "name": "Belajar Express.js",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon Prisma/src/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.9.1",
+    "@prisma/client": "^7.9.1",
     "cors": "^2.8.6",
-    "express": "~4.16.1",
-    "nodemon": "^3.1.14"
+    "dotenv": "^17.4.2",
+    "express": "~4.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^7.9.1"
   }
 }
