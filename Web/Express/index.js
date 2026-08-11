@@ -6,6 +6,20 @@ const app = express();
 // deklarasi port
 const port = 3000;
 
+/*
+  Setting CORS
+*/
+// import package cors
+const cors = require('cors');
+// settingan cors
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+};
+// masukkan settingan ke middleware cors
+app.use(cors(corsOptions))
+
+
 // bentuk  umum deklarasi endpoint
 // app.get('/', (req, res) => {
 //   res.json('hello world');
