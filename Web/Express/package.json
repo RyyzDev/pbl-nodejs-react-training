@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon Prisma/src/index.js",
+    "dev": "nodemon Jwt-rawsql/src/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.9.1",
     "@prisma/client": "^7.9.1",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "~4.16.1"
+    "express": "~4.16.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.23.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
