@@ -10,8 +10,8 @@ const { validationBodyMovies } = require('../middleware/validation')
 // Routing
 router.get('/', movieController.getAllMovies);
 router.get('/:id', movieController.getMovieById);
-router.post('/', movieController.createMovie);
-router.put('/:id', movieController.updateMovie);
+router.post('/', validationBodyMovies, movieController.createMovie);
+router.put('/:id', validationBodyMovies, movieController.updateMovie);
 router.delete('/:id', movieController.deleteMovie);
 
 module.exports = router
