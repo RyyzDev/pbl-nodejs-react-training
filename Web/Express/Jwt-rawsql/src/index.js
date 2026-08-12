@@ -26,7 +26,7 @@ app.use('/api/categories', categoryRoutes)
 app.use('/api/movies', movieRoutes)
 
 // error handler basic
-app.use( (err, erq, res, next) => {
+app.use( (err, req, res, next) => {
     console.error(err)
     res.status(err.status || 500).json({
         error: err.message || 'Internal Server Error'
