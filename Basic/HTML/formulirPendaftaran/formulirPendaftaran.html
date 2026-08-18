@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Formulir Pendaftaran</title>
+    </head>
+    <body style="background-color: #f2f2f2; font-family: Arial, sans-serif;">
+        <header>
+            <center>
+                <nav>
+                    <a href="formulirPendaftaran.html">Formulir Pendaftaran |</a>
+                    <a href="tabelPeserta.html">Tabel Peserta</a>
+                </nav>
+                <hr>
+                <h1>Formulir Pendaftaran</h1>
+            </center>
+        </header>
+        <main> 
+             <form> 
+                <fieldset>
+                    <legend>Data Diri</legend>
+                    <label for="nama">Nama:</label><br>
+                    <input type="text" id="nama" name="nama" required><br><br>
+
+                    <legend>Jenis Kelamin</legend>
+                    <input type="radio" id="laki-laki" name="jenis-kelamin" value="laki-laki" required>
+                    <label for="laki-laki">Laki-laki</label><br>
+                    <input type="radio" id="perempuan" name="jenis-kelamin" value="perempuan" required>
+                    <label for="perempuan">Perempuan</label><br><br>
+
+                    <legend>Agama</legend>
+                    <select id="agama" name="agama" required>
+                        <optgroup label="Agama Mayoritas">
+                            <option value="">Pilih Agama</option>
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                        </optgroup>
+                        <optgroup label="Agama Minoritas">
+                            <option value="hindu">Hindu</option>
+                            <option value="budha">Budha</option>
+                            <option value="konghucu">Konghucu</option>
+                        </optgroup>
+                    </select><br><br>
+
+                    <legend>Tempat Lahir</legend>
+                    <input type="text" id="tempat-lahir" name="tempat-lahir" required><br><br>
+                    
+                    <legend>Tanggal Lahir</legend>
+                    <input type="date" id="tanggal-lahir" name="tanggal-lahir" required><br><br>
+
+                    <label for="alamat">Alamat:</label><br>
+                    <textarea id="alamat" name="alamat" rows="4" cols="50" required></textarea><br><br>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Data Pendidikan</legend>
+                    <label for="sd">SD</label><br>
+                    <input type="text" id="sd" name="sd" required><br><br>
+                    <label for="smp">SMP</label><br>
+                    <input type="text" id="smp" name="smp" required><br><br>
+                    <label for="sma">SMA</label><br>
+                    <input type="text" id="sma" name="sma" required><br><br>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Pelatihan</legend>
+                    <label>Minat</label><br>
+                    <input type="checkbox" id="pelatihan1" name="pelatihan" value="pelatihan1">
+                    <label for="pelatihan1">HTML</label><br>
+                    <input type="checkbox" id="pelatihan2" name="pelatihan" value="pelatihan2">
+                    <label for="pelatihan2">CSS</label><br>
+                    <input type="checkbox" id="pelatihan    3" name="pelatihan" value="pelatihan3">
+                    <label for="pelatihan3">JavaScript</label><br>
+                    <input type="checkbox" id="pelatihan4" name="pelatihan" value="pelatihan4">
+                    <br>
+                    <legend>Skill</legend>
+                    <input type="checkbox" id="skill1" name="skill" value="skill1">
+                    <label for="skill1">Web Design</label><br>
+                    <input type="checkbox" id="skill2" name="skill" value="skill2">
+                    <label for="skill2">Web Development</label><br>
+                    <input type="checkbox" id="skill3" name="skill" value="skill3">
+                    <label for="skill3">Database Management</label><br>
+                </fieldset>
+                
+                 <fieldset>
+                    <legend>Jurusan</legend>
+                    <select>
+                    <optgroup label="Jurusan">
+                        <option value="teknik-informatika">Teknik Informatika</option>
+                        <option value="sistem-informasi">Sistem Informasi</option>
+                        <option value="teknik-komputer">Teknik Komputer</option>
+                    </optgroup>
+                    </select>
+                </fieldset><br>
+                <input type="submit" value="Kirim">
+            </form>
+        </main>
+    </body>
+</html>
