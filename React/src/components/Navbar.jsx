@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import LogoResto from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 
@@ -20,13 +19,16 @@ export default function Navbar () {
               <Link className="nav-link" to='/'  aria-current="page"><b>Beranda</b></Link>
             </li>
             <li className="nav-item m-3">
-              <Link to='/menu' className="nav-link"><b>Menu</b></Link>
+              <Link to='/menus' className="nav-link"><b>Menu</b></Link>
             </li>
             <li className="nav-item m-3">
-              <Link to='/contact' className="nav-link"><b>Kontak</b></Link>
+              <Link to='/contacts' className="nav-link"><b>Kontak</b></Link>
             </li>
             <li className="nav-item m-3">
-              <Link to='/employee' className="nav-link"><b>Karyawan</b></Link>
+              <Link to='/employees' className="nav-link"><b>Karyawan</b></Link>
+            </li>
+            <li className="nav-item m-3">
+              <Link to='/guests' className="nav-link"><b>Tamu</b></Link>
             </li>
 
 
