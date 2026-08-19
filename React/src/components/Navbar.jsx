@@ -7,24 +7,30 @@ export default function Navbar () {
   <>
     <nav className="navbar navbar-expand-lg bg-dark-subtle">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <img src={LogoResto} width={70} height={70} me-10 alt="Logo Restoran" />
+        <Link to="/" className="navbar-brand">
+          <img src={LogoResto} width={70} height={70} alt="Logo Restoran" />
             <strong className="navbar-text text-decoration-underline">Restoran Kitchen</strong>
-        </a>
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse ps-4" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link to='/'><a className="nav-link active" aria-current="page" href="#"><b>Beranda</b></a></Link>
+            <li className="nav-item m-3">
+              <Link className="nav-link" to='/'  aria-current="page"><b>Beranda</b></Link>
             </li>
-            <li className="nav-item">
-              <Link to='/menu'><a className="nav-link active" href="#"><b>Menu</b></a></Link>
+            <li className="nav-item m-3">
+              <Link to='/menu' className="nav-link"><b>Menu</b></Link>
             </li>
-            <li className="nav-item">
-              <Link to='/contact'><a className="nav-link" href="#"><b>Kontak</b></a></Link>
+            <li className="nav-item m-3">
+              <Link to='/contact' className="nav-link"><b>Kontak</b></Link>
             </li>
+            <li className="nav-item m-3">
+              <Link to='/employee' className="nav-link"><b>Karyawan</b></Link>
+            </li>
+
+
+
             {/* <li className="nav-item">
               <a className="nav-link disabled" aria-disabled="true">Disabled</a>
             </li> */}
