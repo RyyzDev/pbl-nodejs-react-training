@@ -9,7 +9,9 @@ export default function GuestPage() {
     const [error, setError] = useState("")
     const [activeGuest, setActiveGuest] = useState(null);
     const [inputData, setInputData] = useState(null)
+    const [isEdit, setIsEdit] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [refreshKey, setRefreshKey] = useState(0);
 
     const getGuestData = useCallback(async() => {
         try {
@@ -24,12 +26,12 @@ export default function GuestPage() {
         } finally {
             setLoading(false)
         }
-    }, [url])
+    }, [])
     
 
     useEffect(() => {
-         getGuestData();
-    }, [getGuestData])
+        getGuestData(); // eslint-disable-line
+    }, [getGuestData, refreshKey])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,24 +40,82 @@ export default function GuestPage() {
             [name]: value
         })
     }
+
+    const openAddModal = () => {
+        setForm({})
+        setIsEdit(false)
+        setInputData(true)
+    }
+ 
+    const closeModal = () => {
+        setInputData(null)
+        setForm({})
+        setIsEdit(false)
+    }
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true)
         setError("")
-
+ 
         try {
-            const response = await axios.post(url, form)
+            let response
+            if (isEdit) {
+                const { id_tamu, ...payload } = form
+                response = await axios.put(url, payload, {
+                    params: { id: id_tamu }
+                })
+            } else {
+                response = await axios.post(url, form)
+            }
+ 
             if (response.data.success === false) {
                 setError("Gagal Menyimpan data")
-                setInputData(false)
             } else {
                 console.log(response.data)
-                alert("data berhasil disimpan")
+                alert(isEdit ? "Data berhasil diubah" : "Data berhasil disimpan")
+                setRefreshKey(k => k + 1)
+                closeModal()
             }
-            setIsSubmitting(false)
-            setInputData(false)
         } catch (err) {
             setError(err.response?.data?.message || err.message || "Error")
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+ 
+    const handleEdit = (guest) => {
+        setForm({
+            id_tamu: guest.id_tamu,
+            nama_tamu: guest.nama_tamu,
+            email_tamu: guest.email_tamu,
+            komentar_tamu: guest.komentar_tamu
+        })
+        setIsEdit(true)
+        setInputData(true)
+    }
+
+    const handleDelete = async (id) => {
+        const konfirmasi = window.confirm("Apakah anda yakin ingin menghapus data ini?")
+        if (!konfirmasi){
+            return
+        }
+        try {
+            const response = await axios.delete(url, {
+                params : {
+                    id: id
+                }
+            })
+            if (!response.data){
+                setError("Gagal Menghapus Data")
+                setRefreshKey(k => k + 1)
+                return
+            }
+            setRefreshKey(k => k + 1)
+            console.log(response.data)
+            alert("Data Berhasil dihapus")
+        }catch (err) {
+            setError (err.response?.data?.message || err)
         }
     }
 
@@ -77,7 +137,7 @@ export default function GuestPage() {
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => setInputData(true)}
+                    onClick={openAddModal}
                 >
                     Tambah Data
                 </button>
@@ -91,14 +151,37 @@ export default function GuestPage() {
                                 <th scope="col">ID</th>
                                 <th scope="col">Nama Tamu</th>
                                 <th scope="col">Komentar Tamu</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             {guests.map(guest => (
-                                <tr key={guest.id_tamu} onClick={() => { setActiveGuest(guest) }} className='pe-auto'>
+                                <tr key={guest.id_tamu} className='pe-auto'>
                                     <td>{guest.id_tamu}</td>
                                     <td>{guest.nama_tamu}</td>
                                     <td>{guest.komentar_tamu}</td>
+                                    <td className='col-3'>
+                                        <div className='g-3'>
+                                            <button
+                                                className='btn btn-primary btn-sm'
+                                                onClick={() => handleEdit(guest)}
+                                            >   
+                                                Edit
+                                            </button>
+                                            <button
+                                                className='btn btn-info btn-sm'
+                                                onClick={() => { setActiveGuest(guest) }}
+                                            >
+                                                Detail
+                                            </button>
+                                            <button
+                                                className='btn btn-danger btn-sm'
+                                                onClick={() => handleDelete(guest.id_tamu)}
+                                            >
+                                                Hapus
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -112,7 +195,6 @@ export default function GuestPage() {
                         <div className="modal-content text-center">
                             <div className="modal-header">
                                 <h5 className="modal-title">Data Pengunjung</h5>
-                                {/* Klik tombol close akan mengubah state kembali ke null untuk menutup modal */}
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -144,8 +226,7 @@ export default function GuestPage() {
                     <div className="modal-dialog">
                         <div className="modal-content text-center">
                             <div className="modal-header">
-                                <h5 className="modal-title">Tambah Buku Tamu</h5>
-                                {/* Klik tombol close akan mengubah state kembali ke null untuk menutup modal */}
+                                <h5 className="modal-title">{isEdit ? ('Edit'):('Tambah')} Buku Tamu</h5>
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -191,7 +272,7 @@ export default function GuestPage() {
                                     <button
                                         type="submit"
                                         className="btn btn-primary w-100"
-                                        disabled={isSubmitting} // Tombol otomatis tidak bisa diklik jika isLoading bernilai true
+                                        disabled={isSubmitting} 
                                     >
                                         {isSubmitting ? (
                                             <>
@@ -200,7 +281,7 @@ export default function GuestPage() {
                                                 <span role="status">Mengirim...</span>
                                             </>
                                         ) : (
-                                            "Submit" // Teks normal jika tidak sedang loading
+                                            "Submit" 
                                         )}
                                     </button>
                                 </form>
