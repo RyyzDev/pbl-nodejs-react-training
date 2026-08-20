@@ -1,12 +1,17 @@
 // import express
-const express = require('express')
+import express from 'express'
+// import cors
+import cors from 'cors'
+
+// import routes
+import categoryRoutes from './routes/categoryRoutes.js'
+import movieRoutes from './routes/movieRoutes.js'
+
 // init express
 const app = express();
 // set port
 const port = 8000
 
-// import cors
-const cors = require('cors')
 const corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200
@@ -15,10 +20,6 @@ app.use(cors(corsOptions))
 
 // json body parsing
 app.use(express.json())
-
-// import routes
-const categoryRoutes = require('./routes/categoryRoutes')
-const movieRoutes = require('./routes/movieRoutes')
 
 // init routes
 app.use('/api/movies', movieRoutes)

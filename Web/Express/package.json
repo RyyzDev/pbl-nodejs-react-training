@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon Jwt-rawsql/src/index.js",
+    "dev": "nodemon Prisma/src/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },
